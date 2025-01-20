@@ -4,7 +4,9 @@ CMAKE 			:=cmake
 SOURCE_DIR		:=$(TOPDIR)
 BUILD_DIR		:=build
 OUTPUT_DIR		:=output
-TOOLCHAIN_FILE 	:=scripts/cmake/soc/corex-a53.cmake
+
+PLATFORM			:=qemu-aarch64
+TOOLCHAIN_FILE 	:=scripts/cmake/platform/$(PLATFORM).cmake
 
 # 0: Silent | 1: Verbose
 V				?=1
@@ -21,7 +23,7 @@ all: build
 
 phony+=config
 config:
-	$(CMAKE) -DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE) -DCMAKE_BUILD_TYPE:STRING=$(BUILD_TYPE) -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -S$(SOURCE_DIR) -B$(BUILD_DIR)
+	$(CMAKE) -DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE) -DPLATFORM=$(PLATFORM) -DCMAKE_BUILD_TYPE:STRING=$(BUILD_TYPE) -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -S$(SOURCE_DIR) -B$(BUILD_DIR)
 
 phony+=build
 build: config

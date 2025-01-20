@@ -12,9 +12,13 @@ list(APPEND ASM_SRC startup.S)
 # C Source
 list(APPEND C_SRC main.c)
 
+# Library
+list(APPEND LIBS platform)
+
 # Target
 add_executable(${PROJECT_NAME} ${ASM_SRC} ${C_SRC})
 target_link_options(${PROJECT_NAME} PUBLIC -Wl,--script ${CMAKE_CURRENT_BINARY_DIR}/${LDS_SRC} -Wl,-Map=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}.map)
+target_link_libraries(${PROJECT_NAME} ${LIBS})
 set_property(
     TARGET ${PROJECT_NAME}
     APPEND
