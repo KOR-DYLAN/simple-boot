@@ -16,8 +16,8 @@ set(CMAKE_C_COMPILER_WORKS TRUE CACHE BOOL "" FORCE)
 set(CMAKE_CXX_COMPILER_WORKS TRUE CACHE BOOL "" FORCE)
 
 # Common Option
-set(COMMON_ASFLAGS "-x assembler-with-cpp -march=${TARGET_ARCH} -mtune=${TARGET_CPU} -nostdinc -mgeneral-regs-only -mstrict-align -ffreestanding -Wa,--fatal-warnings")
-set(COMMON_CFLAGS "-march=${TARGET_ARCH} -mtune=${TARGET_CPU} -nostdinc -mgeneral-regs-only -mstrict-align -ffunction-sections -fdata-sections -ffreestanding -fno-common")
+set(COMMON_ASFLAGS "-x assembler-with-cpp -march=${TARGET_ARCH} -mtune=${TARGET_CPU} -nostdinc -mgeneral-regs-only -mstrict-align -ffreestanding -Wa,--fatal-warnings -D__ASSEMBLER__ -I${CMAKE_SOURCE_DIR}/include/lib/arch/arm/aarch64")
+set(COMMON_CFLAGS "-march=${TARGET_ARCH} -mtune=${TARGET_CPU} -nostdinc -mgeneral-regs-only -mstrict-align -ffunction-sections -fdata-sections -ffreestanding -fno-common -I${CMAKE_SOURCE_DIR}/include/lib/arch/arm/aarch64")
 set(COMMON_LDFLAGS "-z noexecstack -Wl,--fatal-warnings -Wl,--gc-sections -Wl,-z,common-page-size=4096 -Wl,-z,max-page-size=4096 -Wl,--build-id=none -Wl,--sort-section=alignment -nostdlib")
 
 # Debug

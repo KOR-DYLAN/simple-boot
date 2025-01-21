@@ -14,7 +14,7 @@ QEMU_GIC_VER	:=2
 QEMU_VIRT		:=off
 QEMU_SECURE		:=on
 QEMU_CPU		:=cortex-a53
-QEMU_SMP		:=4
+QEMU_SMP		:=1
 QEMU_RAM		:=512M
 QEMU_IMG		:=output/bin/simple-boot-aarch64
 QEMU_FLAGS		:=-d unimp -semihosting-config enable=on -nographic

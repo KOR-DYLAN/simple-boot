@@ -1,6 +1,9 @@
+#include <common/asm_macro_utils.S>
+#include <aarch64_asm_macro_util.S>
+
     .global image_entrypoint
 
-image_entrypoint:
+func image_entrypoint
     mov x0, #0
     mov x1, #1
     mov x2, #2
@@ -9,3 +12,4 @@ image_entrypoint:
     mov x5, #5
     mov x6, #6
     b .
+endfunc image_entrypoint
