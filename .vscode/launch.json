@@ -1,0 +1,31 @@
+{
+    // Learn about possible attributes using IntelliSense.
+    // Hover over an existing feature to see a description of it.
+    // For more information, visit https://go.microsoft.com/fwlink/?linkid=830387.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/output/bin/simple-boot-aarch64",
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb-multiarch",
+            "miDebuggerServerAddress": "localhost:1234",
+            "setupCommands": [
+                {
+                    "description": "Enable automatic formatting in gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set disassembly version to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "stopAtEntry": true
+        }
+    ]
+}
