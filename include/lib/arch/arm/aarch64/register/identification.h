@@ -423,7 +423,7 @@
 /****************************************************************************************************
  * ID_AA64PFR1_EL1:     RO, 64bit, AArch64 Processor Feature Register 1
  ****************************************************************************************************/
-/* This register is always RES0. */
+/* Unknown in 'DDI0500J_cortex_a53_trm.pdf' */
 
 /****************************************************************************************************
  * ID_AA64DFR0_EL1:     RO, 64bit, AArch64 Debug Feature Register 0, EL1
@@ -450,17 +450,17 @@
 /****************************************************************************************************
  * ID_AA64DFR1_EL1:     RO, 64bit, AArch64 Debug Feature Register 1
  ****************************************************************************************************/
-/* This register is always RES0. */
+/* Unknown in 'DDI0500J_cortex_a53_trm.pdf' */
 
 /****************************************************************************************************
  * ID_AA64AFR0_EL1:     RO, 64bit, AArch64 Auxiliary Feature Register 0
  ****************************************************************************************************/
-/* This register is always RES0. */
+/* Unknown in 'DDI0500J_cortex_a53_trm.pdf' */
 
 /****************************************************************************************************
  * ID_AA64AFR1_EL1:     RO, 64bit, AArch64 Auxiliary Feature Register 1
  ****************************************************************************************************/
-/* This register is always RES0. */
+/* Unknown in 'DDI0500J_cortex_a53_trm.pdf' */
 
 /****************************************************************************************************
  * ID_AA64ISAR0_EL1:    RO, 64bit, AArch64 Instruction Set Attribute Register 0, EL1
@@ -552,7 +552,7 @@
 /****************************************************************************************************
  * ID_AA64MMFR1_EL1:    RO, 64bit, AArch64 Memory Model Feature Register 1
  ****************************************************************************************************/
-/* This register is always RES0. */
+/* Unknown in 'DDI0500J_cortex_a53_trm.pdf' */
 
 /****************************************************************************************************
  * CCSIDR_EL1:          RO, 32bit, Cache Size ID Register
@@ -619,7 +619,7 @@
 /****************************************************************************************************
  * AIDR_EL1:            RO, 32bit, Auxiliary ID Register
  ****************************************************************************************************/
-/* This register is always RES0. */
+/* The processor does not implement AIDR_EL1, so this register is always RES0. */
 
 /****************************************************************************************************
  * CSSELR_EL1:          RW, 32bit, Cache Size Selection Register
@@ -676,15 +676,18 @@
 #define DCZID_BLOCKSIZE_MASK                U(0xf)
 
 /****************************************************************************************************
- * VPIDR_EL2:           RO, 32bit, Virtualization Processor ID Register
+ * VPIDR_EL2:           RW, 32bit, Virtualization Processor ID Register
  ****************************************************************************************************/
+#ifndef REG_VPIDR_EL2
+#define REG_VPIDR_EL2
 /* [31:0] VPIDR:            MIDR value returned by Non-secure PL1 reads of the MIDR. 
                             The MIDR description defines the subdivision of this value. */
 #define VPIDR_SHIFT                         U(0)
 #define VPIDR_MASK                          U(0xffffffff)
+#endif  /* !REG_VPIDR_EL2 */
 
 /****************************************************************************************************
- * VMPIDR_EL2:          RO, 64bit, Virtualization Multiprocessor ID Register
+ * VMPIDR_EL2:          RW, 64bit, Virtualization Multiprocessor ID Register
  ****************************************************************************************************/
 /* [63:0] VMPIDR:           MPIDR value returned by Non-secure EL1 reads of the MPIDR_EL1. 
                             The MPIDR description defines the subdivision of this value. */
