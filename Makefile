@@ -1,3 +1,4 @@
+export GNUMAKEFLAGS=--no-print-directory
 TOPDIR			:=$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 NPROC			?=$(shell nproc)
 CMAKE			:=cmake
@@ -20,7 +21,7 @@ QEMU_IMG		:=output/bin/simple-boot-aarch64
 QEMU_FLAGS		:=-d unimp -semihosting-config enable=on -nographic
 
 # 0: Silent | 1: Verbose
-V				?=1
+V				?=0
 ifeq ($(V),1)
     VERBOSE=-v
 else

@@ -22,12 +22,17 @@ func image_entrypoint
     cbz x0, do_warm_boot    /* secondary cores */
     b do_cold_boot          /* primary core */
 
+/* boot: secondary cores - Not Supported */
+do_warm_boot:
+    wfi
+    b do_warm_boot
+
 /* boot: primary core */
 do_cold_boot:
+    /* Set the exception vectors. */
+    adr x0, runtime_exceptions
+    msr vbar_el3, x0
+    isb
+
     b .
-
-/* boot: secondary cores */
-do_warm_boot:
-    b . /* Not Support */
-
 endfunc image_entrypoint

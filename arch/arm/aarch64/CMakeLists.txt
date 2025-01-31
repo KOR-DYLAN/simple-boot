@@ -8,6 +8,7 @@ set(LDS_SRC boot.lds)
 
 # ASM Source
 list(APPEND ASM_SRC startup.S)
+list(APPEND ASM_SRC runtime_exceptions.S)
 
 # C Source
 list(APPEND C_SRC main.c)
