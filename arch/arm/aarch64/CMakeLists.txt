@@ -14,7 +14,8 @@ list(APPEND ASM_SRC runtime_exceptions.S)
 list(APPEND C_SRC main.c)
 
 # Library
-list(APPEND LIBS platform)
+list(APPEND LIBS arch)
+list(APPEND LIBS plat)
 
 # Target
 add_executable(${PROJECT_NAME} ${ASM_SRC} ${C_SRC})

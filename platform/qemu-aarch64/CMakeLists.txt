@@ -1,4 +1,4 @@
-project(platform
+project(plat
     VERSION 0.0.1
     LANGUAGES ASM C
 )

@@ -3,6 +3,7 @@
 #include <lib/arch/sysreg.h>
 
     .global image_entrypoint
+    .global reset_handler
 
 func image_entrypoint
     /* SCTLR_EL3.EE:
@@ -34,5 +35,21 @@ do_cold_boot:
     msr vbar_el3, x0
     isb
 
+    /* do 'reset' handler */
+    bl reset_handler
     b .
 endfunc image_entrypoint
+
+    /* The plat_reset_handler can clobber x0 - x19, x30 */
+func reset_handler
+    mov x19, x30
+
+    /* The plat_reset_handler can clobber x0 - x18, x30 */
+    bl plat_reset_handler
+
+    /* The cpu_reset_handler can clobber x0 - x18, x30 */
+    bl cpu_reset_handler
+
+    mov x30, x19
+    ret
+endfunc reset_handler
