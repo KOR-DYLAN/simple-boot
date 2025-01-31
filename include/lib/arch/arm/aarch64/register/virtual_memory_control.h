@@ -176,6 +176,8 @@
 /****************************************************************************************************
  * SCTLR_EL3:           RW, 32bit, System Control Register, EL3
  ****************************************************************************************************/
+/* Reference from the document 'DDI0500J_cortex_a53_trm.pdf'. */
+#define SCTLR_EL3_RESET_VAL                 U(0x00C50838)
 /* [25] EE:                 Exception endianness. This bit controls the endianness for:
                                 • Explicit data accesses at EL3.
                                 • Stage 1 translation table walks at EL3.
@@ -184,36 +186,43 @@
                                 1   Big endian. */
 #define SCTLR_EL3_EE_SHIFT                  U(25)
 #define SCTLR_EL3_EE_MASK                   U(0x1)
+#define SCTLR_EL3_EE_BIT                    (SCTLR_EL3_EE_MASK << SCTLR_EL3_EE_SHIFT)
 /* [19] WXN:                Force treatment of all memory regions with write permissions as XN. The possible values are:
                                 0   Regions with write permissions are not forced XN. This is the reset value.
                                 1   Regions with write permissions are forced XN. */
 #define SCTLR_EL3_WXN_SHIFT                 U(19)
 #define SCTLR_EL3_WXN_MASK                  U(0x1)
+#define SCTLR_EL3_WXN_BIT                   (SCTLR_EL3_WXN_MASK << SCTLR_EL3_WXN_SHIFT)
 /* [12] I:                  Global instruction cache enable. The possible values are:
                                 0   Instruction caches disabled. This is the reset value.
                                 1   Instruction caches enabled. */
 #define SCTLR_EL3_I_SHIFT                   U(12)
 #define SCTLR_EL3_I_MASK                    U(0x1)
+#define SCTLR_EL3_I_BIT                     (SCTLR_EL3_I_MASK << SCTLR_EL3_I_SHIFT)
 /* [3] SA:                  Enables stack alignment check. The possible values are:
                                 0   Disables stack alignment check.
                                 1   Enables stack alignment check. This is the reset value. */
 #define SCTLR_EL3_SA_SHIFT                  U(3)
 #define SCTLR_EL3_SA_MASK                   U(0x1)
+#define SCTLR_EL3_SA_BIT                    (SCTLR_EL3_SA_MASK << SCTLR_EL3_SA_SHIFT)
 /* [2] C:                   Global enable for data and unifies caches. The possible values are:
                                 0   Disables data and unified caches. This is the reset value.
                                 1   Enables data and unified caches. */
 #define SCTLR_EL3_C_SHIFT                   U(2)
 #define SCTLR_EL3_C_MASK                    U(0x1)
+#define SCTLR_EL3_C_BIT                     (SCTLR_EL3_C_MASK << SCTLR_EL3_C_SHIFT)
 /* [1] A:                   Enable alignment fault check The possible values are:
                                 0   Disables alignment fault checking. This is the reset value.
                                 1   Enables alignment fault checking. */
 #define SCTLR_EL3_A_SHIFT                   U(1)
 #define SCTLR_EL3_A_MASK                    U(0x1)
+#define SCTLR_EL3_A_BIT                     (SCTLR_EL3_A_MASK << SCTLR_EL3_A_SHIFT)
 /* [0] M:                   Global enable for the EL3 MMU. The possible values are:
                                 0   Disables EL3 MMU. This is the reset value.
                                 1   Enables EL3 MMU. */
 #define SCTLR_EL3_M_SHIFT                   U(0)
 #define SCTLR_EL3_M_MASK                    U(0x1)
+#define SCTLR_EL3_M_BIT                     (SCTLR_EL3_EEMASK << SCTLR_EL3_M_SHIFT)
 
 /****************************************************************************************************
  * TTBR0_EL1:           RW, 64bit, Translation Table Base Register 0, EL1

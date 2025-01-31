@@ -168,8 +168,8 @@
                                                 1   An asynchronous error has occurred.
                                                 A write of 0 clears this bit and drives nINTERRIRQ HIGH. 
                                                 A write of 1 is ignored. */
-#define L2ECTLR_EL1_L2 INTERNAL_ASYNCHRONOUS_ERROR_SHIFT    U(30)
-#define L2ECTLR_EL1_L2 INTERNAL_ASYNCHRONOUS_ERROR_MASK     U(0x1)
+#define L2ECTLR_EL1_L2_INTERNAL_ASYNCHRONOUS_ERROR_SHIFT    U(30)
+#define L2ECTLR_EL1_L2_INTERNAL_ASYNCHRONOUS_ERROR_MASK     U(0x1)
 /* [29] AXI or CHI asynchronous error:      AXI or CHI asynchronous error indication. The possible values are:
                                                 0   No pending asynchronous error.
                                                 1   An asynchronous error has occurred.

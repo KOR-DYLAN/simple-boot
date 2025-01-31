@@ -1,5 +1,5 @@
 TOPDIR			:=$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
-NPROC			:=$(shell nproc)
+NPROC			?=$(shell nproc)
 CMAKE			:=cmake
 SOURCE_DIR		:=$(TOPDIR)
 BUILD_DIR		:=build

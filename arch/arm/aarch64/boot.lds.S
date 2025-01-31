@@ -1,27 +1,17 @@
-#define PLATFORM_LINKER_FORMAT  "elf64-littleaarch64"
-#define PLATFORM_LINKER_ARCH    aarch64
-#define PLATFORM_IMAGE_BASE     0x40000000
-#define PLATFORM_IMAGE_LIMIT    0x40040000
-#define PAGE_SIZE               0x1000
-#define STRUCT_ALIGN            8
-#define DATA_ALIGN              1
-#define BSS_ALIGN               16
+#include <platform.h>
 
-#define PLAT_NUM_CPUS           4
-#define PLAT_STACK_SIZE         0x1000 * PLAT_NUM_CPUS
-
-OUTPUT_FORMAT(PLATFORM_LINKER_FORMAT)
-OUTPUT_ARCH(PLATFORM_LINKER_ARCH)
+OUTPUT_FORMAT(PLAT_LINKER_FORMAT)
+OUTPUT_ARCH(PLAT_LINKER_ARCH)
 ENTRY(image_entrypoint)
 
 MEMORY {
-    RAM (rwx): ORIGIN = PLATFORM_IMAGE_BASE, LENGTH = PLATFORM_IMAGE_LIMIT - PLATFORM_IMAGE_BASE
+    RAM (rwx): ORIGIN = PLAT_IMAGE_BASE, LENGTH = PLAT_IMAGE_LIMIT - PLAT_IMAGE_BASE
 }
 
 SECTIONS
 {
-    . = PLATFORM_IMAGE_BASE;
-    ASSERT(. == ALIGN(PAGE_SIZE), "PLATFORM_IMAGE_BASE address is not aligned on a page boundary.")
+    . = PLAT_IMAGE_BASE;
+    ASSERT(. == ALIGN(PAGE_SIZE), "PLAT_IMAGE_BASE address is not aligned on a page boundary.")
 
     __IMAGE_START__ = .;
     .text . : {
@@ -87,7 +77,7 @@ SECTIONS
      */
     __RW_END__ = .;
     __IMAGE_END__ = .;
-    ASSERT(. <= PLATFORM_IMAGE_LIMIT, "IMAGE has exceeded its limit.")
+    ASSERT(. <= PLAT_IMAGE_LIMIT, "IMAGE has exceeded its limit.")
 
     /DISCARD/ : {
         *(.dynsym .dynstr .hash .gnu.hash)

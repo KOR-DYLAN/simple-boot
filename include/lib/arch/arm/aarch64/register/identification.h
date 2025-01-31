@@ -8,43 +8,45 @@
  * MIDR_EL1:            RO, 32bit, Main ID Register
  ****************************************************************************************************/
 /* [31:24] Implementer:     Indicates the implementer code. */
-#define MIDR_IMPLEMENTER_SHIFT              U(24)
-#define MIDR_IMPLEMENTER_MASK               U(0xff)
+#define MIDR_EL1_IMPLEMENTER_SHIFT          U(24)
+#define MIDR_EL1_IMPLEMENTER_MASK           U(0xff)
 /* [23:20] Variant:         Indicates the variant number of the processor. 
                             This is the major revision number x in the rx part of the rxpy description of the product revision status. */
-#define MIDR_VARIANT_SHIFT                  U(20)
-#define MIDR_VARIANT_MASK                   U(0xf)
+#define MIDR_EL1_VARIANT_SHIFT              U(20)
+#define MIDR_EL1_VARIANT_MASK               U(0xf)
 /* [19:16] Architecture:    Indicates the architecture code. */
-#define MIDR_ARCHITECTURE_SHIFT             U(16)
-#define MIDR_ARCHITECTURE_MASK              U(0xf)
+#define MIDR_EL1_ARCHITECTURE_SHIFT         U(16)
+#define MIDR_EL1_ARCHITECTURE_MASK          U(0xf)
 /* [15:4] PartNum:          Indicates the primary part number. */
-#define MIDR_PARTNUM_SHIFT                  U(4)
-#define MIDR_PARTNUM_MASK                   U(0xfff)
+#define MIDR_EL1_PARTNUM_SHIFT              U(4)
+#define MIDR_EL1_PARTNUM_MASK               U(0xfff)
 /* [3:0] Revision:          Indicates the minor revision number of the processor. 
                             This is the minor revision number y in the py part of the rxpy description of the product revision status. */
-#define MIDR_REVISION_SHIFT                 U(3)
-#define MIDR_REVISION_MASK                  U(0xf)
+#define MIDR_EL1_REVISION_SHIFT             U(3)
+#define MIDR_EL1_REVISION_MASK              U(0xf)
 
 /****************************************************************************************************
  * MPIDR_EL1:           RO, 64bit, Multiprocessor Affinity Register
  ****************************************************************************************************/
 /* [39:32] Aff3:            Affinity level 3. Highest level affinity field. */
-#define MPIDR_AFF3_SHIFT                    U(32)
-#define MPIDR_AFF3_MASK                     U(0xff)
+#define MPIDR_EL1_AFF3_SHIFT                U(32)
+#define MPIDR_EL1_AFF3_MASK                 U(0xff)
 /* [30] U:                  Indicates a single core system, as distinct from core 0 in a cluster. */
-#define MPIDR_U_SHIFT                       U(30)
-#define MPIDR_U_MASK                        U(0x1)
+#define MPIDR_EL1_U_SHIFT                   U(30)
+#define MPIDR_EL1_U_MASK                    U(0x1)
 /* [24] MT:                 Indicates whether the lowest level of affinity consists of logical cores that are implemented using a multi-threading type approach. */
-#define MPIDR_MT_SHIFT                      U(24)
-#define MPIDR_MT_MASK                       U(0x1)
+#define MPIDR_EL1_MT_SHIFT                  U(24)
+#define MPIDR_EL1_MT_MASK                   U(0x1)
 /* [23:16] Aff2:            Affinity level 2. Second highest level affinity field.
                             Indicates the value read in the CLUSTERIDAFF2 configuration signal. */
-#define MPIDR_AFF2_SHIFT                    U(16)
-#define MPIDR_AFF2_MASK                     U(0xff)
+#define MPIDR_EL1_AFF2_SHIFT                U(16)
+#define MPIDR_EL1_AFF2_MASK                 U(0xff)
 /* [15:8] Aff1:             Affinity level 1. Third highest level affinity field.
                             Indicates the value read in the CLUSTERIDAFF1 configuration signal. */
-#define MPIDR_AFF1_SHIFT                    U(8)
-#define MPIDR_AFF1_MASK                     U(0xff)
+#define MPIDR_EL1_AFF1_SHIFT                U(8)
+#define MPIDR_EL1_AFF1_MASK                 U(0xff)
+#define MPIDR_EL1_CPU_MASK                  U(MPIDR_EL1_AFF1_MASK)
+#define MPIDR_EL1_CLUSTER_MASK              U(MPIDR_EL1_AFF1_MASK << MPIDR_EL1_AFF1_SHIFT)
 /* [7:0] Aff0:              Affinity level 0. Lowest level affinity field.
                             Indicates the core number in the Cortex-A53 processor. 
                             The possible values are:
@@ -52,15 +54,15 @@
                                 0x0, 0x1            A cluster with two cores.
                                 0x0, 0x1, 0x2       A cluster with three cores.
                                 0x0, 0x1, 0x2, 0x3  A cluster with four cores. */
-#define MPIDR_AFF0_SHIFT                    U(0)
-#define MPIDR_AFF0_MASK                     U(0xff)
+#define MPIDR_EL1_AFF0_SHIFT                U(0)
+#define MPIDR_EL1_AFF0_MASK                 U(0xff)
 
 /****************************************************************************************************
  * REVIDR_EL1:          RO, 32bit, Revision ID Register
  ****************************************************************************************************/
 /* [31:0] ID number:        Implementation-specific revision information. */
-#define REVIDR_SHIFT                        U(0)
-#define REVIDR_MASK                         U(0xffffffff)
+#define REVIDR_EL1_SHIFT                    U(0)
+#define REVIDR_EL1_MASK                     U(0xffffffff)
 
 /****************************************************************************************************
  * ID_PFR0_EL1:         RO, 32bit, AArch32 Processor Feature Register 0
