@@ -328,6 +328,7 @@
 /****************************************************************************************************
  * CPUECTLR_EL1:        RW, 64bit, CPU Extended Control Register, EL1
  ****************************************************************************************************/
+#define CPUECTLR_EL1                                                S3_1_c15_c2_1
 /* [6] SMPEN:                                   Enable hardware management of data coherency with other cores in the cluster. The possible values are:
                                                     0   Disables data coherency with other cores in the cluster. This is the reset value.
                                                     1   Enables data coherency with other cores in the cluster. 
@@ -335,6 +336,7 @@
                                                     Set the SMPEN bit before enabling the caches, even if there is only one core in the system.*/
 #define CPUECTLR_EL1_SMPEN_SHIFT                                    U(6)
 #define CPUECTLR_EL1_SMPEN_MASK                                     U(0x1)
+#define CPUECTLR_EL1_SMPEN_BIT                                      (CPUECTLR_EL1_SMPEN_MASK << CPUECTLR_EL1_SMPEN_SHIFT)
 /* [5:3] FPRETCTL:                              Advanced SIMD and Floating-point retention control. The possible values are:
                                                     0b000   Disable the retention circuit. This is the reset value.
                                                     0b001   2 Architectural Timer ticks are required before retention entry.
@@ -350,6 +352,7 @@
                                                     Entry to retention state relies on the system counter increments being +1. */
 #define CPUECTLR_EL1_FPRETCTL_SHIFT                                 U(3)
 #define CPUECTLR_EL1_FPRETCTL_MASK                                  U(0x7)
+#define CPUECTLR_EL1_FPRETCTL_BIT                                   (CPUECTLR_EL1_FPRETCTL_MASK << CPUECTLR_EL1_FPRETCTL_SHIFT)
 /* [2:0] CPURETCTL:                             CPU retention control. The possible values are:
                                                     0b000   Disable the retention circuit. This is the reset value.
                                                     0b001   2 Architectural Timer ticks are required before retention entry.
@@ -364,6 +367,7 @@
                                                     Entry to retention state relies on the system counter increments being +1. */
 #define CPUECTLR_EL1_CPURETCTL_SHIFT                                U(0)
 #define CPUECTLR_EL1_CPURETCTL_MASK                                 U(0x7)
+#define CPUECTLR_EL1_CPURETCTL_BIT                                  (CPUECTLR_EL1_CPURETCTL_MASK << CPUECTLR_EL1_CPURETCTL_SHIFT)
 
 /****************************************************************************************************
  * CPUMERRSR_EL1:       RW, 64bit, CPU Memory Error Syndrome Register

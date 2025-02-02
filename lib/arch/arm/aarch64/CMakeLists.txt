@@ -8,4 +8,4 @@ add_library(${PROJECT_NAME})
 
 # append source lsits
 add_subdirectory(cpu)
-add_subdirectory(helper)
+# add_subdirectory(helper)

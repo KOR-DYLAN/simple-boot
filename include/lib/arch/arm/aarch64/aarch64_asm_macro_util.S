@@ -92,4 +92,41 @@
     ret
     .endm
 
+/****************************************************************************** 
+ * For System Register Set/Clear
+ ******************************************************************************/
+    /*
+    * Set a bit in a system register. Can set multiple bits but is limited by the
+    *  way the ORR instruction encodes them.
+    *
+    * _reg:
+    *    Register to write to
+    *
+    * _bit:
+    *    Bit to set. Please use a descriptive #define
+    *
+    * _assert:
+    *    Optionally whether to read back and assert that the bit has been
+    *    written. Please disable with NO_ASSERT macro
+    *
+    * clobbers: x1
+    */
+    .macro sysreg_bit_set _reg:req, _bit:req, _assert=1
+        mrs x1, \_reg
+        orr x1, x1, #\_bit
+        msr \_reg, x1
+    .endm
+
+    /*
+    * Clear a bit in a system register. Can clear multiple bits but is limited by
+    *  the way the BIC instrucion encodes them.
+    *
+    * see sysreg_bit_set for usage
+    */
+    .macro sysreg_bit_clear _reg:req, _bit:req
+        mrs x1, \_reg
+        bic x1, x1, #\_bit
+        msr \_reg, x1
+    .endm
+
 #endif  /* !AARCH64_ASM_MACRO_UTIL__S__ */
