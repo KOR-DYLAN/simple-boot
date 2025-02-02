@@ -3,13 +3,13 @@
 #include <lib/arch/sysreg.h>
 
     .global image_entrypoint
-    .global reset_handler
 
 func image_entrypoint
-    /* SCTLR_EL3.EE:
+    /* Feature Disable, System Control Register
+     * SCTLR_EL3.EE:
      *  - Little endian. This is the reset value.
      * SCTLR_EL3.WXN:
-     *  - egions with write permissions are not forced XN.
+     *  - Regions with write permissions are not forced XN.
      * SCTLR_EL3.SA:
      *  - Disables data and unified caches.
      * SCTLR_EL3.A:
@@ -22,26 +22,48 @@ func image_entrypoint
     bl plat_is_primary_core
     cbz x0, do_warm_boot    /* secondary cores */
     b do_cold_boot          /* primary core */
+endfunc image_entrypoint
 
 /* boot: secondary cores - Not Supported */
-do_warm_boot:
+func do_warm_boot
     wfi
-    b do_warm_boot
+    b .
+endfunc do_warm_boot
 
-/* boot: primary core */
-do_cold_boot:
+func do_cold_boot
     /* Set the exception vectors. */
     adr x0, runtime_exceptions
     msr vbar_el3, x0
     isb
 
     /* do 'reset' handler */
-    bl reset_handler
-    b .
-endfunc image_entrypoint
-
-func reset_handler
     bl plat_reset_handler
     bl cpu_reset_handler
-    ret
-endfunc reset_handler
+
+    /* Feature Enable, System Control Register
+     *SCTLR_EL3.I:
+     *  - Instruction caches enabled.
+     * SCTLR_EL3.A:
+     *  - Enables alignment fault checking.
+     * SCTLR_EL3.SA:
+     *  - Enables stack alignment check. */
+    mov x1, #(SCTLR_EL3_I_BIT | SCTLR_EL3_A_BIT | SCTLR_EL3_SA_BIT)
+    mrs x0, sctlr_el3
+    orr x0, x0, x1
+    msr sctlr_el3, x0
+    isb
+
+    /* Set the following system registers to reset values:
+     * - SCR_EL3 : Secure Configuration Register
+     * - MDCR_EL3: Monitor Debug Configuration Register
+     * - CPTR_EL3: Architectural Feature Trap Register
+     */
+    mov_imm x0, SCR_EL3_RESET_VAL
+    msr scr_el3, x0
+    mov_imm x0, MDCR_EL3_RESET_VAL
+    msr mdcr_el3, x0
+    mov_imm x0, CPTR_EL3_RESET_VAL
+    msr cptr_el3, x0
+
+    b .
+endfunc do_cold_boot

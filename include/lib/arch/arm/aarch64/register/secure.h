@@ -7,6 +7,8 @@
 /****************************************************************************************************
  * SCR_EL3:             RW, 32bit, Secure Configuration Register
  ****************************************************************************************************/
+/* Reference from the document 'DDI0500J_cortex_a53_trm.pdf'. */
+#define SCR_EL3_RESET_VAL                   U(0x00000000)
 /* [13] TWE:                Traps WFE instructions. The possible values are:
                                 0   WFE instructions are not trapped. This is the reset value.
                                 1   WFE instructions executed in AArch32 or AArch64 from EL2, EL1 or EL0 are trapped to EL3 if
@@ -92,6 +94,8 @@
 /****************************************************************************************************
  * CPTR_EL3:            RW, 32bit, Architectural Feature Trap Register, EL3
  ****************************************************************************************************/
+/* Reference from the document 'DDI0500J_cortex_a53_trm.pdf'. */
+#define CPTR_EL3_RESET_VAL                  U(0x00000400)
 /* [31] TCPAC:              This causes a direct access to the CPACR_EL1 from EL1 or the CPTR_EL2 from EL2 to trap to EL3 unless it is trapped at EL2. 
                             The possible values are:
                                 0   Does not cause access to the CPACR_EL1 or CPTR_EL2 to be trapped.
@@ -115,6 +119,8 @@
 /****************************************************************************************************
  * MDCR_EL3:            RW, 32bit, Monitor Debug Configuration Register, EL3
  ****************************************************************************************************/
+/* Reference from the document 'DDI0500J_cortex_a53_trm.pdf'. */
+#define MDCR_EL3_RESET_VAL                  U(0x00000000)
 /* [21] EPMAD:              External debugger access to Performance Monitors registers disabled. 
                             This disables access to these registers by an external debugger. The possible values are:
                                 0   Access to Performance Monitors registers from external debugger is permitted.

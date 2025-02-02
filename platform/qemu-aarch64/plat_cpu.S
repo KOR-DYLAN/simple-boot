@@ -14,6 +14,9 @@ func plat_is_primary_core
     ret
 endfunc plat_is_primary_core
 
+/* Clobbers: x0 - x19, x30 */
 func plat_reset_handler
+    mov x19, x30
+    mov x30, x19
     ret
 endfunc plat_reset_handler
