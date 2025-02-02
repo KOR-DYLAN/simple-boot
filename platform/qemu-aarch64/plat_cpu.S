@@ -14,7 +14,7 @@ func plat_is_primary_core
     ret
 endfunc plat_is_primary_core
 
-/* Clobbers: x0 - x19, x30 */
+    /* Clobbers: x0 - x19, x30 */
 func plat_reset_handler
     /* backup 'lr' in 'x19' */
     mov x19, x30

@@ -38,6 +38,7 @@ func do_cold_boot
 
     bl reset_hanlder
     bl setup_el3_execution_context
+    bl init_mem
 
     b .
 endfunc do_cold_boot
@@ -121,3 +122,44 @@ func setup_el3_execution_context
     mov x30, x20
     ret
 endfunc setup_el3_execution_context
+
+    /* Clobbers: x0 - x20, x30 */
+func init_mem
+    /* backup 'lr' in 'x20' */
+    mov x20, x30
+
+    bl plat_mem_init
+    bl init_c_runtime
+
+    /* Use SP_EL0 for the C runtime stack. */
+    msr spsel, #0
+    bl alloc_stack
+    mov sp, x0
+
+    /* store 'lr' from 'x20' */
+    mov x30, x20
+    ret
+endfunc init_mem
+
+    /* Clobbers: x0 - x19, x30 */
+func init_c_runtime
+    /* backup 'lr' in 'x19' */
+    mov x19, x30
+
+    /* TODO */
+
+    /* store 'lr' from 'x19' */
+    mov x30, x19
+    ret
+endfunc init_c_runtime
+
+func alloc_stack
+    /* backup 'lr' in 'x19' */
+    mov x19, x30
+
+    /* TODO */
+
+    /* store 'lr' from 'x19' */
+    mov x30, x19
+    ret
+endfunc alloc_stack
