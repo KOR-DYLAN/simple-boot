@@ -17,65 +17,76 @@
                                         • There is not a pending WFE wakeup event.
                                         • The instruction is not trapped at EL2 or EL1.
                                 See the Arm® Architecture Reference Manual Armv8, for Armv8-A architecture profile for more information. */
-#define SCR_TWE_SHIFT                       U(13)
-#define SCR_TWE_MASK                        U(0x1)
+#define SCR_EL3_TWE_SHIFT                   U(13)
+#define SCR_EL3_TWE_MASK                    U(0x1)
+#define SCR_EL3_TWE_BIT                     (SCR_EL3_TWE_MASK << SCR_EL3_TWE_SHIFT)
 /* [12] TWI:                Traps WFI instructions. The possible values are:
                                 0   WFI instructions are not trapped. This is the reset value.
                                 1   WFI instructions executed in AArch32 or AArch64 from EL2, EL1 or EL0 are trapped to EL3 if
                                     the instruction would otherwise cause suspension of execution, 
                                     that is if there is not a pending WFI wakeup event and the instruction is not trapped at EL2 or EL1.
                                 See the Arm® Architecture Reference Manual Armv8, for Armv8-A architecture profile for more information. */
-#define SCR_TWI_SHIFT                       U(12)
-#define SCR_TWI_MASK                        U(0x1)
+#define SCR_EL3_TWI_SHIFT                   U(12)
+#define SCR_EL3_TWI_MASK                    U(0x1)
+#define SCR_EL3_TWI_BIT                     (SCR_EL3_TWI_MASK << SCR_EL3_TWI_SHIFT)
 /* [11] ST:                 Enable Secure EL1 access to CNTPS_TVAL_EL1, CNTS_CTL_EL1, and CNTPS_CVAL_EL1 registers. 
                             The possible values are:
                                 0   Registers accessible only in EL3. This is the reset value.
                                 1   Registers accessible in EL3 and EL1 when SCR_EL3.NS is 0. */
-#define SCR_ST_SHIFT                        U(11)
-#define SCR_ST_MASK                         U(0x1)
+#define SCR_EL3_ST_SHIFT                    U(11)
+#define SCR_EL3_ST_MASK                     U(0x1)
+#define SCR_EL3_ST_BIT                      (SCR_EL3_ST_MASK << SCR_EL3_ST_SHIFT)
 /* [10] RW:                 Register width control for lower exception levels. The possible values are:
                                 0   Lower levels are all AArch32. This is the reset value.
                                 1   The next lower level is AArch64. */
-#define SCR_RW_SHIFT                        U(10)
-#define SCR_RW_MASK                         U(0x1)
+#define SCR_EL3_RW_SHIFT                    U(10)
+#define SCR_EL3_RW_MASK                     U(0x1)
+#define SCR_EL3_RW_BIT                      (SCR_EL3_RW_MASK << SCR_EL3_RW_SHIFT)
 /* [9] SIF:                 Secure Instruction Fetch. When the processor is in Secure state, 
                             this bit disables instruction fetches from Non-secure memory. The possible values are:
                                 0   Secure state instruction fetches from Non-secure memory are permitted. This is the reset value.
                                 1   Secure state instruction fetches from Non-secure memory are not permitted. */
-#define SCR_SIF_SHIFT                       U(9)
-#define SCR_SIF_MASK                        U(0x1)
+#define SCR_EL3_SIF_SHIFT                   U(9)
+#define SCR_EL3_SIF_MASK                    U(0x1)
+#define SCR_EL3_SIF_BIT                     (SCR_EL3_SIF_MASK << SCR_EL3_SIF_SHIFT)
 /* [8] HCE:                 Hyp Call enable. This bit enables the use of HVC instructions. The possible values are:
                                 0   The HVC instruction is UNDEFINED at all exception levels. This is the reset value.
                                 1   The HVC instruction is enabled at EL1, EL2 or EL3. */
-#define SCR_HCE_SHIFT                       U(8)
-#define SCR_HCE_MASK                        U(0x1)
+#define SCR_EL3_HCE_SHIFT                   U(8)
+#define SCR_EL3_HCE_MASK                    U(0x1)
+#define SCR_EL3_HCE_BIT                     (SCR_EL3_HCE_MASK << SCR_EL3_HCE_SHIFT)
 /* [7] SMD:                 SMC instruction disable. The possible values are:
                                 0   The SMC instruction is enabled at EL1, EL2, and EL3. This is the reset value.
                                 1   The SMC instruction is UNDEFINED at all exception levels. At EL1, in the Non-secure state, 
                                     the HCR_EL2.TSC bit has priority over this control. */
-#define SCR_SMD_SHIFT                       U(7)
-#define SCR_SMD_MASK                        U(0x1)
+#define SCR_EL3_SMD_SHIFT                   U(7)
+#define SCR_EL3_SMD_MASK                    U(0x1)
+#define SCR_EL3_SMD_BIT                     (SCR_EL3_SMD_MASK << SCR_EL3_SMD_SHIFT)
 /* [3] EA:                  External Abort and SError interrupt Routing. This bit controls which mode takes external aborts. 
                             The possible values are:
                                 0   External Aborts and SError Interrupts while executing at exception levels other than EL3 are not taken in EL3. This is the reset value.
                                 1   External Aborts and SError Interrupts while executing at all exception levels are taken in EL3. */
-#define SCR_EA_SHIFT                        U(3)
-#define SCR_EA_MASK                         U(0x1)
+#define SCR_EL3_EA_SHIFT                    U(3)
+#define SCR_EL3_EA_MASK                     U(0x1)
+#define SCR_EL3_EA_BIT                      (SCR_EL3_EA_MASK << SCR_EL3_EA_SHIFT)
 /* [2] FIQ:                 Physical FIQ Routing. The possible values ares:
                                 0   Physical FIQ while executing at exception levels other than EL3 are not taken in EL3. This is the reset value.
                                 1   Physical FIQ while executing at all exception levels are taken in EL3. */
-#define SCR_FIQ_SHIFT                       U(2)
-#define SCR_FIQ_MASK                        U(0x1)
+#define SCR_EL3_FIQ_SHIFT                   U(2)
+#define SCR_EL3_FIQ_MASK                    U(0x1)
+#define SCR_EL3_FIQ_BIT                     (SCR_EL3_FIQ_MASK << SCR_EL3_FIQ_SHIFT)
 /* [1] IRQ:                 Physical IRQ Routing. The possible values are:
                                 0   Physical IRQ while executing at exception levels other than EL3 are not taken in EL3.
                                 1   Physical IRQ while executing at all exception levels are taken in EL3. */
-#define SCR_IRQ_SHIFT                       U(1)
-#define SCR_IRQ_MASK                        U(0x1)
+#define SCR_EL3_IRQ_SHIFT                   U(1)
+#define SCR_EL3_IRQ_MASK                    U(0x1)
+#define SCR_EL3_IRQ_BIT                     (SCR_EL3_IRQ_MASK << SCR_EL3_IRQ_SHIFT)
 /* [0] NS:                  Non-secure bit. The possible values are. The possible values are:
                                 0   EL0 and EL1 are in Secure state, memory accesses from those exception levels can access Secure memory. This is the reset value.
                                 1   EL0 and EL1 are in Non-secure state, memory accesses from those exception levels cannot access Secure memory. */
-#define SCR_NS_SHIFT                        U(0)
-#define SCR_NS_MASK                         U(0x1)
+#define SCR_EL3_NS_SHIFT                    U(0)
+#define SCR_EL3_NS_MASK                     U(0x1)
+#define SCR_EL3_NS_BIT                      (SCR_EL3_NS_MASK << SCR_EL3_NS_SHIFT)
 
 /****************************************************************************************************
  * SDER32_EL3:          RW, 32bit, Secure Debug Enable Register
@@ -127,18 +138,21 @@
                                 1   Access to Performance Monitors registers from external debugger is disabled, unless overridden by authentication interface. */
 #define MDCR_EL3_EPMAD_SHIFT                U(21)
 #define MDCR_EL3_EPMAD_MASK                 U(0x1)
+#define MDCR_EL3_EPMAD_BIT                  (MDCR_EL3_EPMAD_MASK << MDCR_EL3_EPMAD_SHIFT)
 /* [20] EDAD:               External debugger access to breakpoint and watchpoint registers disabled. 
                             This disables access to these registers by an external debugger. The possible values are:
                                 0   Access to breakpoint and watchpoint registers from external debugger is permitted.
                                 1   Access to breakpoint and watchpoint registers from external debugger is disabled, unless overridden by authentication interface. */
 #define MDCR_EL3_EDAD_SHIFT                 U(20)
 #define MDCR_EL3_EDAD_MASK                  U(0x1)
+#define MDCR_EL3_EDAD_BIT                   (MDCR_EL3_EDAD_MASK << MDCR_EL3_EDAD_SHIFT)
 /* [17] SPME:               Secure performance monitors enable. This enables event counting exceptions from Secure state.
                             The possible values are:
                                 0   Event counting prohibited in Secure state. This is the reset value.
                                 1   Event counting allowed in Secure state. */
 #define MDCR_EL3_SPME_SHIFT                 U(17)
 #define MDCR_EL3_SPME_MASK                  U(0x1)
+#define MDCR_EL3_SPME_BIT                   (MDCR_EL3_SPME_MASK << MDCR_EL3_SPME_SHIFT)
 /* [16] SDD:                AArch64 secure debug disable. Disables Software debug exceptions from Secure state 
                             if Secure EL1 is using AArch64, other than from Software breakpoint instructions. 
                             The possible values are:
@@ -147,6 +161,7 @@
                             The reset value is UNKNOWN. */
 #define MDCR_EL3_SDD_SHIFT                  U(16)
 #define MDCR_EL3_SDD_MASK                   U(0x1)
+#define MDCR_EL3_SDD_BIT                    (MDCR_EL3_SDD_MASK << MDCR_EL3_SDD_SHIFT)
 /* [15:14] SPD32:           AArch32 secure privileged debug. Enables or disables debug exceptions from Secure state if Secure EL1 is using AArch32, 
                             other than Software breakpoint instructions. The possible values are:
                                 0b00    Legacy mode. Debug exceptions from Secure EL1 are enabled only if AArch32SelfHostedSecurePrivilegedInvasiveDebugEnabled().
@@ -156,24 +171,31 @@
                                 The reset value is UNKNOWN. */
 #define MDCR_EL3_SPD32_SHIFT                U(14)
 #define MDCR_EL3_SPD32_MASK                 U(0x3)
+#define MDCR_EL3_SPD32(x)                   ((x) << MDCR_EL3_SPD32_SHIFT)
+#define MDCR_EL3_SPD32_LEGACY               U(0x0)
+#define MDCR_EL3_SPD32_DISABLE              U(0x2)
+#define MDCR_EL3_SPD32_ENABLE               U(0x3)
 /* [10] TDOSA:              Trap accesses to the OS debug system registers, OSLAR_EL1, OSLSR_EL1, OSDLR_EL1, and DBGPRCR_EL1 OS.
                                 0   Accesses are not trapped.
                                 1   Accesses to the OS debug system registers are trapped to EL3.
                                 The reset value is UNKNOWN. */
 #define MDCR_EL3_TDOSA_SHIFT                U(10)
-#define MDCR_EL3_TDOSA_MASK                 U0x1()
+#define MDCR_EL3_TDOSA_MASK                 U(0x1)
+#define MDCR_EL3_TDOSA_BIT                  (MDCR_EL3_TDOSA_MASK << MDCR_EL3_TDOSA_SHIFT)
 /* [9] TDA:                 Trap accesses to the remaining sets of debug registers to EL3.
                                 0   Accesses are not trapped.
                                 1   Accesses to the remaining debug system registers are trapped to EL3.
                                 The reset value is UNKNOWN. */
 #define MDCR_EL3_TDA_SHIFT                  U(9)
 #define MDCR_EL3_TDA_MASK                   U(0x1)
+#define MDCR_EL3_TDA_BIT                    (MDCR_EL3_TDA_MASK << MDCR_EL3_TDA_SHIFT)
 /* [6] TPM:                 Trap Performance Monitors accesses. The possible values are:
                                 0   Accesses are not trapped.
                                 1   Accesses to the Performance Monitor registers are trapped to EL3.
                                 The reset value is UNKNOWN. */
 #define MDCR_EL3_TPM_SHIFT                  U(6)
 #define MDCR_EL3_TPM_MASK                   U(0x1)
+#define MDCR_EL3_TPM_BIT                    (MDCR_EL3_TPM_MASK << MDCR_EL3_TPM_SHIFT)
 
 /****************************************************************************************************
  * AFSR0_EL3:           RW, 32bit, Auxiliary Fault Status Register 0, EL1, EL2 and EL3

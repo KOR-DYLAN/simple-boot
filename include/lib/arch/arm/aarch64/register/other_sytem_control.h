@@ -98,4 +98,21 @@
 #define ACTLR_EL3_CPUACTLR_EL1_MASK         U(0x1)
 #endif  /* !REG_ACTLR_EL3 */
 
+/****************************************************************************************************
+ * DIT:                 RW, 64bit, Data Independent Timing
+ ****************************************************************************************************/
+/* [24] DIT:                        Data Independent Timing.
+                                        0   The architecture makes no statement about the timing properties of any instructions. 
+                                        1   The architecture requires that:
+                                            • The timing of every load and store instruction is insensitive to the value of the data being loaded or stored.
+                                            • For certain data processing instructions, the instruction takes a time which is independent of:
+                                                - The values of the data supplied in any of its registers.
+                                                - The values of the NZCV flags.
+                                            • For certain data processing instructions, the response of the instruction to asynchronous exceptions does not vary based on:
+                                                - The values of the data supplied in any of its registers.
+                                                - The values of the NZCV flags. */
+#define DIT_SHIFT                           U(24)
+#define DIT_MASK                            U(0x1)
+#define DIT_BIT                             (DIT_MASK << DIT_SHIFT)
+
 #endif  /* !OTHER_SYTEM_CONTROL__H__ */

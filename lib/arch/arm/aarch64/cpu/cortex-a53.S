@@ -9,9 +9,11 @@
  **************************************************************/
 /* Clobbers: x0 - x19, x30 */
 func cpu_reset_handler
+    /* backup 'lr' in 'x19' */
     mov x19, x30
     bl cortex_a53_enable_smp
     isb
+    /* store 'lr' from 'x19' */
     mov x30, x19
     ret
 endfunc cpu_reset_handler

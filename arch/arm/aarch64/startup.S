@@ -36,9 +36,29 @@ func do_cold_boot
     msr vbar_el3, x0
     isb
 
-    /* do 'reset' handler */
+    bl reset_hanlder
+    bl setup_el3_execution_context
+
+    b .
+endfunc do_cold_boot
+
+    /* Clobbers: x0 - x20, x30 */
+func reset_hanlder
+    /* backup 'lr' in 'x20' */
+    mov x20, x30
+
     bl plat_reset_handler
     bl cpu_reset_handler
+
+    /* store 'lr' from 'x20' */
+    mov x30, x20
+    ret
+endfunc reset_hanlder
+
+    /* Clobbers: x0 - x20, x30 */
+func el3_arch_init_common
+    /* backup 'lr' in 'x20' */
+    mov x20, x30
 
     /* Feature Enable, System Control Register
      *SCTLR_EL3.I:
@@ -65,5 +85,39 @@ func do_cold_boot
     mov_imm x0, CPTR_EL3_RESET_VAL
     msr cptr_el3, x0
 
-    b .
-endfunc do_cold_boot
+    /* store 'lr' from 'x20' */
+    mov x30, x20
+    ret
+endfunc el3_arch_init_common
+
+    /* Clobbers: x0 - x20, x30 */
+func setup_el3_execution_context
+    /* backup 'lr' in 'x20' */
+    mov x20, x30
+
+    /* Enable External Aborts and SError Interrupts at EL3. */
+    msr daifclr, #DAIF_A_BIT
+
+    /* Feature Enable, Monitor Debug Configuration Register
+     * MDCR_EL3.SDD:
+     *  - Debug exceptions from all exception levels in Secure state are disabled. */
+    mrs x0, mdcr_el3
+    orr x0, x0, #MDCR_EL3_SDD_BIT
+    msr mdcr_el3, x0
+
+    /* Feature Enable, Monitor Debug Configuration Register
+     * SCR_EL3.EA:
+     *  - External Aborts and SError Interrupts while executing at all exception levels are taken in EL3.
+     * SCR_EL3.SIF:
+     *  - Secure state instruction fetches from Non-secure memory are not permitted. */
+    mrs x0, scr_el3
+    orr x0, x0, #SCR_EL3_EA_BIT
+    orr x0, x0, #SCR_EL3_SIF_BIT
+    msr scr_el3, x0
+
+    isb
+
+    /* store 'lr' from 'x20' */
+    mov x30, x20
+    ret
+endfunc setup_el3_execution_context

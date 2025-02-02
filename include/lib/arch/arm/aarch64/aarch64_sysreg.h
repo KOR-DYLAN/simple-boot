@@ -18,5 +18,6 @@
 #include <lib/arch/arm/aarch64/register/tlb_maintenance.h>
 #include <lib/arch/arm/aarch64/register/virtual_memory_control.h>
 #include <lib/arch/arm/aarch64/register/virtualization.h>
+#include <lib/arch/arm/aarch64/register/process_status.h>
 
 #endif  /* !AARCH64_SYSREG__H__ */
