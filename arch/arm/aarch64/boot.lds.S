@@ -55,9 +55,9 @@ SECTIONS
         __RELA_END__ = .;
     } >RAM
 
-    stacks (NOLOAD) : {
+    .stacks (NOLOAD) : {
         __STACKS_START__ = .;
-        . = . + PLAT_STACK_SIZE;
+        *(.libc_stacks);
         __STACKS_END__ = .;
     } >RAM
 

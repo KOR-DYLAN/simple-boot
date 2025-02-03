@@ -13,7 +13,9 @@
 #define BSS_ALIGN               16
 
 #define PLAT_NUM_CPUS           4
-#define PLAT_STACK_SIZE         0x1000 * PLAT_NUM_CPUS
+#define PLAT_STACK_SIZE         0x1000
+#define PLAT_STACK_ALIGN_COUNT  6
+#define PLAT_STACK_ALIGN        (1 << PLAT_STACK_ALIGN_COUNT)
 
 #define PLAT_PRIMARY_CORE_NUM   U(0)
 

@@ -1,6 +1,7 @@
 #include <common/asm_macro_utils.S>
 #include <aarch64_asm_macro_util.S>
 #include <lib/arch/sysreg.h>
+#include <platform_def.h>
 
     .global image_entrypoint
 
@@ -129,37 +130,14 @@ func init_mem
     mov x20, x30
 
     bl plat_mem_init
-    bl init_c_runtime
+    bl libc_init
 
     /* Use SP_EL0 for the C runtime stack. */
     msr spsel, #0
-    bl alloc_stack
+    bl libc_get_stack
     mov sp, x0
 
     /* store 'lr' from 'x20' */
     mov x30, x20
     ret
 endfunc init_mem
-
-    /* Clobbers: x0 - x19, x30 */
-func init_c_runtime
-    /* backup 'lr' in 'x19' */
-    mov x19, x30
-
-    /* TODO */
-
-    /* store 'lr' from 'x19' */
-    mov x30, x19
-    ret
-endfunc init_c_runtime
-
-func alloc_stack
-    /* backup 'lr' in 'x19' */
-    mov x19, x30
-
-    /* TODO */
-
-    /* store 'lr' from 'x19' */
-    mov x30, x19
-    ret
-endfunc alloc_stack

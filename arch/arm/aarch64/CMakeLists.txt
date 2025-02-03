@@ -16,6 +16,7 @@ list(APPEND C_SRC main.c)
 # Library
 list(APPEND LIBS arch)
 list(APPEND LIBS plat)
+list(APPEND LIBS c)
 
 # Target
 add_executable(${PROJECT_NAME} ${ASM_SRC} ${C_SRC})
