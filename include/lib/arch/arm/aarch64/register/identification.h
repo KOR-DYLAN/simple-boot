@@ -45,7 +45,6 @@
                             Indicates the value read in the CLUSTERIDAFF1 configuration signal. */
 #define MPIDR_EL1_AFF1_SHIFT                U(8)
 #define MPIDR_EL1_AFF1_MASK                 U(0xff)
-#define MPIDR_EL1_CPU_MASK                  U(MPIDR_EL1_AFF1_MASK)
 #define MPIDR_EL1_CLUSTER_MASK              U(MPIDR_EL1_AFF1_MASK << MPIDR_EL1_AFF1_SHIFT)
 /* [7:0] Aff0:              Affinity level 0. Lowest level affinity field.
                             Indicates the core number in the Cortex-A53 processor. 
@@ -56,6 +55,7 @@
                                 0x0, 0x1, 0x2, 0x3  A cluster with four cores. */
 #define MPIDR_EL1_AFF0_SHIFT                U(0)
 #define MPIDR_EL1_AFF0_MASK                 U(0xff)
+#define MPIDR_EL1_CPU_MASK                  U(MPIDR_EL1_AFF0_MASK)
 
 /****************************************************************************************************
  * REVIDR_EL1:          RO, 32bit, Revision ID Register
