@@ -4,6 +4,8 @@
 #include <platform_def.h>
 
     .global image_entrypoint
+    /* keep symbols */
+    .global invalidate_data_cache_range
 
 func image_entrypoint
     /* Feature Disable, System Control Register
@@ -40,6 +42,8 @@ func do_cold_boot
     bl reset_hanlder
     bl setup_el3_execution_context
     bl init_mem
+
+    bl main
 
     b .
 endfunc do_cold_boot
@@ -132,7 +136,10 @@ func init_mem
     bl plat_mem_init
     bl libc_init
 
-    /* Use SP_EL0 for the C runtime stack. */
+    /* ---------------------------------------------------------------------
+     * Use SP_EL0 for the C runtime stack. 
+     * ---------------------------------------------------------------------
+     */
     msr spsel, #0
     bl libc_get_stack
     mov sp, x0
