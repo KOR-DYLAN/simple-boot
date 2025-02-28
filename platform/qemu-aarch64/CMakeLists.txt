@@ -10,5 +10,11 @@ list(APPEND ASM_SRC plat_mem.S)
 # C Source
 list(APPEND C_SRC dummy.c)
 
+# Library
+list(APPEND LIBS arch)
+list(APPEND LIBS c)
+list(APPEND LIBS console)
+
 # Target
 add_library(${PROJECT_NAME} ${ASM_SRC} ${C_SRC})
+target_link_libraries(${PROJECT_NAME} ${LIBS})
