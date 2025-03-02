@@ -14,18 +14,8 @@
 #include <cdefs.h>
 #include <stddef.h>
 #include <stdio_.h>
+#include <printf.h>
 
-#define EOF            -1
-
-int printf(const char *fmt, ...) __printflike(1, 2);
-int snprintf(char *s, size_t n, const char *fmt, ...) __printflike(3, 4);
-
-#ifdef STDARG_H
-int vprintf(const char *fmt, va_list args);
-int vsnprintf(char *s, size_t n, const char *fmt, va_list args);
-#endif
-
-int putchar(int c);
 int puts(const char *s);
 
 #endif /* STDIO_H */
