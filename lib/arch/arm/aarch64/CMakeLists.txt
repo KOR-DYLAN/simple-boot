@@ -9,4 +9,5 @@ add_library(${PROJECT_NAME})
 # append source lsits
 add_subdirectory(cpu)
 add_subdirectory(cache)
+add_subdirectory(timer)
 # add_subdirectory(helper)
