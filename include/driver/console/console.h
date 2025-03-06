@@ -1,6 +1,9 @@
 #ifndef CONSOLE__H__
 #define CONSOLE__H__
 
+#define SKIP_CONSOLE_CLOCK      (0)
+#define SKIP_CONSOLE_BAUDRATE   (0)
+
 #include <stdint.h>
 
 typedef enum {

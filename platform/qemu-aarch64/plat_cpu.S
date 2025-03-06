@@ -1,7 +1,7 @@
 #include <common/asm_macro_utils.S>
 #include <aarch64_asm_macro_util.S>
 #include <lib/arch/sysreg.h>
-#include <platform.h>
+#include <platform_def.h>
 
     .global plat_get_core_pos
     .global plat_is_primary_core

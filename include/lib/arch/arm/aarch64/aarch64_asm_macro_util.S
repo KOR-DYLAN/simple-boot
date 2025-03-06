@@ -129,4 +129,39 @@
         msr \_reg, x1
     .endm
 
+/****************************************************************************** 
+ * For System Register Definition
+ ******************************************************************************/
+    .macro rw_sysreg_func_def _sysreg_name
+        .global read_\_sysreg_name
+        .global write_\_sysreg_name
+    func read_\_sysreg_name
+        mrs x0, \_sysreg_name
+        ret
+    endfunc read_\_sysreg_name
+
+    func write_\_sysreg_name
+        msr \_sysreg_name, x0
+        ret
+    endfunc write_\_sysreg_name
+    .endm
+
+    .macro ro_sysreg_func_def _sysreg_name
+        .global read_\_sysreg_name
+        .global write_\_sysreg_name
+    func read_\_sysreg_name
+        mrs x0, \_sysreg_name
+        ret
+    endfunc read_\_sysreg_name
+    .endm
+    
+    .macro wo_sysreg_func_def _sysreg_name
+        .global read_\_sysreg_name
+        .global write_\_sysreg_name
+    func write_\_sysreg_name
+        msr \_sysreg_name, x0
+        ret
+    endfunc write_\_sysreg_name
+    .endm
+
 #endif  /* !AARCH64_ASM_MACRO_UTIL__S__ */
