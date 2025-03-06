@@ -1,4 +1,4 @@
-#include <platform.h>
+#include <platform_def.h>
 
 OUTPUT_FORMAT(PLAT_LINKER_FORMAT)
 OUTPUT_ARCH(PLAT_LINKER_ARCH)

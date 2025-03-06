@@ -137,10 +137,12 @@
         .global write_\_sysreg_name
     func read_\_sysreg_name
         mrs x0, \_sysreg_name
+        ret
     endfunc read_\_sysreg_name
 
     func write_\_sysreg_name
         msr \_sysreg_name, x0
+        ret
     endfunc write_\_sysreg_name
     .endm
 
@@ -149,6 +151,7 @@
         .global write_\_sysreg_name
     func read_\_sysreg_name
         mrs x0, \_sysreg_name
+        ret
     endfunc read_\_sysreg_name
     .endm
     
@@ -157,6 +160,7 @@
         .global write_\_sysreg_name
     func write_\_sysreg_name
         msr \_sysreg_name, x0
+        ret
     endfunc write_\_sysreg_name
     .endm
 

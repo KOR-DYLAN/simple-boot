@@ -1,10 +1,15 @@
+#include <stdio.h>
+#include <platform.h>
+#include <lib/arch/generic_timer.h>
+
 int main(int argc, char *argv[])
 {
-    int i;
+    platform_setup();
 
     while(1)
     {
-        i++;
+        printf("Hello Timer!\n");
+        generic_timer_delay_ms(1000);
     }
 
     return 0;

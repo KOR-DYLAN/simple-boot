@@ -8,7 +8,7 @@ list(APPEND ASM_SRC plat_cpu.S)
 list(APPEND ASM_SRC plat_mem.S)
 
 # C Source
-list(APPEND C_SRC dummy.c)
+list(APPEND C_SRC platform_setup.c)
 
 # Library
 list(APPEND LIBS arch)
